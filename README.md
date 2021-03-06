@@ -1,9 +1,11 @@
-# Users app
+# MERN Users app
 
-An users app built with MEAN stack. This app enable two main different flows or implementations:
+An app that displays users and thier tasks and posts -  developed using Angular, Node, Express and MongoDB.
+This app enable two main different flows or implementations:
 
-1. Users - add a new user, update and delete it
+1. Users - add a new user, search user, update and delete
 2. Selecting a user and manage his tasks and posts
+
 
 ## Core Packages
 1. Angular Router (for routing)
@@ -12,5 +14,11 @@ An users app built with MEAN stack. This app enable two main different flows or 
 ## UI
 
 ### Home 
+![Home](screenshots/user_info.png)
 ### Add User
-### Todos and Posts
+![Add User](screenshots/add_user.png)
+### User Todos and Posts
+![User Todos and Posts](screenshots/users_tasks_and_posts.png)
+### Add Task
+![User Todos and Posts](screenshots/add_task.png)
+
