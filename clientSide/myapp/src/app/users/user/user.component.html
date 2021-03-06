@@ -1,0 +1,64 @@
+<mat-card class="card" [ngClass]="isTasksUnCompleted ? 'borderRed' : 'borderGreen'">
+  <mat-card-content>
+    <form #myForm="ngForm" (ngSubmit)="update(myForm.valid)" novalidate>
+      <mat-form-field appearance="outline"
+      style="cursor: pointer;"
+                      (click)="toggleTasksAndPosts(user)"
+                      matTooltipPosition="above"
+                      matTooltip="Click to navigate to tasks and posts">
+        <mat-label>Id</mat-label>
+        <input matInput disabled name="id" [(ngModel)]="user._id" readonly/>
+      </mat-form-field><br />
+
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" required #name="ngModel" [(ngModel)]="user.name" />
+        <mat-error *ngIf="myForm.submitted && name.invalid && name.errors.required">Name is mandatory</mat-error>
+      </mat-form-field><br />
+
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          name="email"
+          placeholder="Ex. example@gmail.com"
+          required
+          email
+          #email="ngModel"
+          [(ngModel)]="user.email"/>
+        <mat-error *ngIf="myForm.submitted && email.invalid && email.errors.required">Email is required</mat-error>
+        <mat-error *ngIf="myForm.submitted && email.invalid && email.errors.email">Email must be a valid email address</mat-error>
+      </mat-form-field><br />
+
+      <mat-card-actions>
+        <button mat-stroked-button
+                type="button"
+                matTooltipPosition="above"
+                [matTooltip]="totlipValue"
+                (mouseover)="isShow=true;totlipValue = 'Click To Hide'"
+                (click)="isShow=false">More Info
+        </button>
+        <button mat-stroked-button>Update</button>
+        <button mat-stroked-button type="button" (click)="deleteUser()">Delete</button>
+      </mat-card-actions>
+
+      <div class="info" [style.display]="isShow ? 'block' : 'none'">
+        <mat-form-field appearance="outline">
+          <mat-label>Street</mat-label>
+          <input matInput name="street" [(ngModel)]="user.street"/>
+        </mat-form-field><br />
+
+        <mat-form-field appearance="outline">
+          <mat-label>City</mat-label>
+          <input matInput name="city" [(ngModel)]="user.city" />
+        </mat-form-field><br />
+
+        <mat-form-field appearance="outline">
+          <mat-label>Zipcode</mat-label>
+          <input matInput name="zipcode" pattern="^[0-9]*$" #zipcode="ngModel" [(ngModel)]="user.zipcode" />
+          <mat-error *ngIf="myForm.submitted && zipcode.invalid && zipcode.errors.pattern">Zipcode consist only from numbers</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

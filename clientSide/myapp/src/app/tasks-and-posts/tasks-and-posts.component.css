@@ -1,0 +1,15 @@
+.container {
+  box-shadow: 0 1px 4px rgba(73, 69, 69, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  padding: 10px;
+}
+.task {
+  margin-bottom: 10px;
+}
+.task, .post {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 10px;
+}
+
+.div-header {
+  font-size: large;
+}

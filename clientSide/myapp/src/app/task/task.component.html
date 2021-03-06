@@ -1,0 +1,14 @@
+<mat-card style="margin-bottom: 9px">
+  <mat-card-header>
+    <mat-card-title>{{ task.title }}</mat-card-title>
+  </mat-card-header>
+  <!-- <mat-card-content><p>Is Completed? {{ task.completed }}</p></mat-card-content> -->
+  <mat-card-actions>
+    <button mat-stroked-button
+            color="primary"
+            type="button"
+            (click)="setToCompletedTask()"
+            [disabled]="task.completed">{{ task.completed ? "Task Completed" : "Mark Completed" }}
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,89 @@
+<div class="container">
+  <div fxLayout="row">
+    <h2 fxFlexAlign="center">{{user.name}}</h2>
+    <button mat-raised-button (click)="navigateToUsers()" type="button" color="primary" style="margin-left: auto" fxFlexAlign="center">
+     Back To Users
+    </button>
+  </div>
+
+  <!-- Task Logic -->
+  <div class="task">
+    <!-- Task Header -->
+    <div fxLayout="row" style="margin-bottom: 10px">
+      <div fxFlexAlign="center" style="margin: 4px;font-size: large;">Tasks</div>
+      <button mat-stroked-button [disabled]="toggleTask" color="primary" type="button" style="margin-left: auto" fxFlexAlign="center" (click)="toggleTask=true">Add Task</button>
+    </div>
+
+    <!-- See all Tasks -->
+    <div *ngIf="!toggleTask">
+      <div *ngFor="let task of user.tasks">
+        <app-task [task]="task" (notify)="changeTaskStatus($event)"></app-task>
+      </div>
+    </div>
+     <!-- Add New Task -->
+     <div *ngIf="toggleTask">
+      <mat-card class="card">
+        <mat-card-content>
+          <h2>New Task</h2>
+          <form #myForm="ngForm" (ngSubmit)="submitNewTask(myForm.valid)" novalidate>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Title</mat-label>
+              <input matInput name="title" required #title="ngModel" [(ngModel)]="userTask.title">
+              <mat-error *ngIf="!title.valid && title.touched">Title is mandatory</mat-error>
+            </mat-form-field><br />
+
+            <mat-card-actions>
+               <button mat-stroked-button color="primary" type="button" (click)="myForm.reset();toggleTask=false">Cancel</button>
+               <button mat-stroked-button color="primary">Add</button>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
+
+  <!-- Post Logic -->
+  <div class="post">
+    <!-- Task Header -->
+    <div fxLayout="row" style="margin-bottom: 10px">
+      <div fxFlexAlign="center" class="div-header">Posts</div>
+      <button mat-stroked-button color="primary" type="button" style="margin-left: auto" fxFlexAlign="center" [disabled]="togglePost" (click)="togglePost=true">Add Post</button>
+    </div>
+    <!-- All Post -->
+    <div *ngIf="!togglePost">
+      <div *ngFor="let post of user.posts">
+        <app-post [post]="post"></app-post>
+      </div>
+    </div>
+     <!-- Add New Post -->
+     <div *ngIf="togglePost">
+      <mat-card class="card">
+        <mat-card-content>
+          <h2>New Post</h2>
+          <form #myForm="ngForm" (ngSubmit)="submitNewPost(myForm.valid)" novalidate>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Title</mat-label>
+              <input matInput name="title" required #title="ngModel" [(ngModel)]="userPost.title">
+              <mat-error *ngIf="!title.valid && title.touched">Title is mandatory</mat-error>
+            </mat-form-field><br />
+
+            <mat-form-field appearance="fill">
+              <mat-label>Content</mat-label>
+              <textarea matInput name="body" required #body="ngModel" [(ngModel)]="userPost.body"></textarea>
+              <mat-error *ngIf="!body.valid && body.touched">Body is mandatory</mat-error>
+            </mat-form-field><br />
+
+            <mat-card-actions>
+               <button mat-stroked-button color="primary" type="button" (click)="myForm.reset();togglePost=false">Cancel</button>
+               <button mat-stroked-button color="primary">Add</button>
+            </mat-card-actions>
+          </form>
+        </mat-card-content>
+        </mat-card>
+    </div>
+  </div>
+
+
+</div>
